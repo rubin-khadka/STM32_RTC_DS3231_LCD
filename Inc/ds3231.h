@@ -46,6 +46,17 @@ typedef struct {
 } DS3231_Time_t;
 
 // Function Prototypes
+uint8_t DS3231_Init(void);
+uint8_t DS3231_SetTime(DS3231_Time_t *time);
+uint8_t DS3231_GetTime(DS3231_Time_t *time);
+float DS3231_GetTemperature(void);
+uint8_t DS3231_ForceTempConv(void);
+uint8_t DS3231_SetAlarm1(uint8_t hour, uint8_t min, uint8_t sec, uint8_t mode);
+uint8_t DS3231_SetAlarm2(uint8_t hour, uint8_t min, uint8_t mode);
+uint8_t DS3231_CheckOscillatorStop(void);
 
+// BCD conversion helpers
+uint8_t DS3231_DecToBcd(uint8_t val);
+uint8_t DS3231_BcdToDec(uint8_t val);
 
 #endif /* DS3231_H_ */
