@@ -1,6 +1,0 @@
-../Src/i2c1.c:11:6:I2C1_Init	2
-../Src/i2c1.c:57:6:I2C1_Start	5
-../Src/i2c1.c:76:6:I2C1_Stop	2
-../Src/i2c1.c:85:9:I2C1_SendAddr	4
-../Src/i2c1.c:116:9:I2C1_WriteByte	7
-../Src/i2c1.c:157:9:I2C1_ReadByte	4

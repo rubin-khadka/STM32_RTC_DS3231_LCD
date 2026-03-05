@@ -1,6 +1,0 @@
-../Src/i2c1.c:11:6:I2C1_Init	16	static
-../Src/i2c1.c:57:6:I2C1_Start	16	static
-../Src/i2c1.c:76:6:I2C1_Stop	16	static
-../Src/i2c1.c:85:9:I2C1_SendAddr	24	static
-../Src/i2c1.c:116:9:I2C1_WriteByte	24	static
-../Src/i2c1.c:157:9:I2C1_ReadByte	24	static
