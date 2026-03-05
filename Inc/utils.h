@@ -1,11 +1,13 @@
 /*
- * ds3231.c
+ * utils.h
  *
  *  Created on: Mar 5, 2026
  *      Author: Rubin Khadka
  */
 
-#include "ds3231.h"
-#include "i2c1.h"
+#ifndef UTILS_H_
+#define UTILS_H_
 
 
+
+#endif /* UTILS_H_ */

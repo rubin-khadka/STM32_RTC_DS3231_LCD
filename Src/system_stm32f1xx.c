@@ -6,7 +6,6 @@
  */
 
 #include "stm32f103xb.h"
-#include "stdint.h"
 
 // System Core Clock Frequency
 uint32_t SystemCoreClock = 72000000;
