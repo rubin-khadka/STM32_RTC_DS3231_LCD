@@ -11,13 +11,13 @@
 #include "ds3231.h"
 #include "timer2.h"
 #include "lcd.h"
-#include "stdio.h"
-#include "string.h"
+#include "utils.h"
 
 int main(void)
 {
   DS3231_Time_t current_time;
   float temperature;
+  char buffer[17];
 
   // Initialize peripheral modules
   TIMER2_Init();
@@ -28,6 +28,8 @@ int main(void)
   // Initialize DS3231
   if(DS3231_Init() == DS3231_OK)
   {
+    LCD_SendString("INITIALIZE. . .");
+    LCD_SetCursor(1, 0);
     LCD_SendString("DS3231 OK");
   }
   else
@@ -37,38 +39,39 @@ int main(void)
 
   TIMER2_Delay_ms(2000);
 
-//  // Set initial time
-//  current_time.seconds = 0;
-//  current_time.minutes = 12;
-//  current_time.hour = 12;
-//  current_time.dayofweek = 4;  // Friday
-//  current_time.dayofmonth = 5;
-//  current_time.month = 3;
-//  current_time.year = 26;      // 2026
-//  DS3231_SetTime(&current_time);
+  // Set initial time
+  current_time.seconds = 0;
+  current_time.minutes = 32;
+  current_time.hour = 21;
+  current_time.dayofweek = 5;
+  current_time.dayofmonth = 6;
+  current_time.month = 3;
+  current_time.year = 26;      // 2026
+  DS3231_SetTime(&current_time);
 
   while(1)
   {
-    char buffer[17];
     // Get current time
     if(DS3231_GetTime(&current_time) == DS3231_OK)
     {
-      // Display time on LCD
-      sprintf(buffer, "%02d:%02d:%02d", current_time.hour, current_time.minutes, current_time.seconds);
+      // Format and display time on LCD
+      FormatTimeString(current_time.hour, current_time.minutes, current_time.seconds, buffer);
       LCD_SetCursor(0, 0);
       LCD_SendString(buffer);
-      LCD_SendString(" ");
-      LCD_SendString(" ");
 
-      sprintf(buffer, "%02d/%02d/20%02d", current_time.dayofmonth, current_time.month, current_time.year);
+      LCD_SendString("  ");
+
+      // Format and display date
+      FormatDateString(current_time.dayofmonth, current_time.month, current_time.year, buffer);
       LCD_SetCursor(1, 0);
       LCD_SendString(buffer);
     }
 
-    // Get temperature
+    // Get and display temperature
     temperature = DS3231_GetTemperature();
-    sprintf(buffer, "T:%.1fC", temperature);
+    TemperatureToString(temperature, buffer);
     LCD_SetCursor(0, 9);
+    LCD_SendString("T:");
     LCD_SendString(buffer);
 
     TIMER2_Delay_ms(1000);
