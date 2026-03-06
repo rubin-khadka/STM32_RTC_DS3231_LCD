@@ -1,4 +1,4 @@
-# STM32_RTC_DS3231_LCD
+# STM32 RTC DS3231 LCD Project
 
 ## Project Schematic
 
